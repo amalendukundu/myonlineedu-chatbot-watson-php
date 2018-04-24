@@ -1,0 +1,3 @@
+ {
+    "PHP_EXTENSIONS": ["bz2", "zlib", "openssl", "fpm", "tokenizer", "curl", "mcrypt", "mbstring", "pdo", "pdo_mysql", "mysql", "mysqli"]
+ }

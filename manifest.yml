@@ -1,0 +1,14 @@
+declared-services:
+  php-mysql-db:
+    label: cleardb
+    plan: cb5
+
+applications:
+- buildpack: https://github.com/cloudfoundry/php-buildpack.git
+  host: aktts
+  name: aktts
+  memory: 128M
+  instances: 1
+  stack: cflinuxfs2
+  services:
+     - ClearDB-MySQL-Database-1d

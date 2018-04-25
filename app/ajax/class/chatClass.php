@@ -48,9 +48,9 @@
     
     
     /* 
-      This function is called from AJAX submit.php for Oracle eBS context. This function process the user input and act accordingly
+      This function is called from AJAX submit.php. This function process the user input and act accordingly
     */
-    public function processOracleEBSChatInput($p_chat_text, $p_watson_api_context)
+    public function processChatInput($p_chat_text, $p_watson_api_context)
     {
       if(!empty($p_watson_api_context))
          $watson_current_context = $p_watson_api_context;

@@ -13,4 +13,5 @@ The details of connecting to IBM Watson Assistant though PHP and REST API using 
 ## Resources
 
 * [MyOnlineEdu Blog](https://www.myonlineedu.com/blog/view/11/create-a-chatbot-using-ibm-watson-assistant-and-php)
-* [YouTube Playlist - Build a Chat bot] (https://www.youtube.com/watch?v=NDKIb_PlHH4&list=PL7z3k5PveBaHeFvhKttnXia72sRImgduq)
+* [How to Build a Chat bot] (https://www.youtube.com/watch?v=NDKIb_PlHH4&list=PL7z3k5PveBaHeFvhKttnXia72sRImgduq) - YouTube Playlist
+

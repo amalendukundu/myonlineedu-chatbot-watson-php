@@ -8,8 +8,8 @@ error_log("\nV2- Facebook MyOnlineedu Chat Hook start\n", 3, $v_log_file);
 //die();
 
 // parameters
-$hubVerifyToken = 'myonlineedutoken';
-$accessToken = "EAAdG4B9J8FEBAOCpxlnvm82ihV8af8kEC78yNg8docZBkcpwgy13ejKMMXWTHLsvtJLb8S6DBj74OSzZB4LnUmaviIm8QitMxTELZByFv2ihiTus4eDPWPMitr8b9OA6d2f5DeetiAjjgxlzRAI65dbQzqXL4rAYt8BgXxRwAZDZD";
+$hubVerifyToken = 'your_app_token';
+$accessToken = "your_app_access_token";
 
 // check token at setup
 if (isset($_REQUEST['hub_verify_token']) && $_REQUEST['hub_verify_token'] === $hubVerifyToken) 

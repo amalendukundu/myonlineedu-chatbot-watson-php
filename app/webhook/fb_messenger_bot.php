@@ -1,14 +1,15 @@
 <?php
+require_once("../ajax/class/config.php");
 require_once("../ajax/class/chatClass.php");
 
-$v_log_file = 'C:/wamp/www/bluemix/oraclechatbot/log/app.log';
-error_log("\nV2- Facebook Oracle Chat Hook start\n", 3, $v_log_file);
+$v_log_file = 'C:/wamp/www/demo/chatbot/log/app.log';
+error_log("\nV2- Facebook MyOnlineedu Chat Hook start\n", 3, $v_log_file);
 //error_log(print_r($_REQUEST, TRUE), 3, $v_log_file);
 //die();
 
 // parameters
-$hubVerifyToken = 'oracleebschatbotvtwo';
-$accessToken = "EAAWyCx0eA94BAL2jySYbBegcfiK8ZBrJ02o5B9KMhS6Wvcu4ASfDvAnRWSyDymPciux0ldSJLi5IQjfMGPC9OPKjTy1bCFIROBn8Dfm7vcYICKJHjpoGKOGJePc7MgCheeDxxEo3UjBSspNaIWS21XLZBUqapePSpLdAL6MwZDZD";
+$hubVerifyToken = 'myonlineedutoken';
+$accessToken = "EAAdG4B9J8FEBAOCpxlnvm82ihV8af8kEC78yNg8docZBkcpwgy13ejKMMXWTHLsvtJLb8S6DBj74OSzZB4LnUmaviIm8QitMxTELZByFv2ihiTus4eDPWPMitr8b9OA6d2f5DeetiAjjgxlzRAI65dbQzqXL4rAYt8BgXxRwAZDZD";
 
 // check token at setup
 if (isset($_REQUEST['hub_verify_token']) && $_REQUEST['hub_verify_token'] === $hubVerifyToken) 
@@ -40,11 +41,11 @@ $api_response = call_facebook_messenger_api($api_url, json_encode($response), $h
 $v_db_session_id = 'FB-' . $senderId . '-' . $receipientId;
 
 $chatObj = new chatClass(true);
-$chatObj->setWatsonConfig("8ec62dfd-1e1a-4d06-93bf-b9bc93c6f520");
+$chatObj->setWatsonConfig(CONFIG_WATSON_WORKSPACE_ID);
 $session_array = $chatObj->getDBSessions($v_db_session_id);
-$watson_return_array = $chatObj->getMessengerGenericEBSReply($v_db_session_id, $messageInputText, $session_array);
-//error_log("After Watson API call:\n", 3, $v_log_file);
-//error_log(print_r($watson_return_array, TRUE), 3, $v_log_file);
+$watson_return_array = $chatObj->getWebHookReply($v_db_session_id, $messageInputText, $session_array);
+error_log("After Watson API call:\n", 3, $v_log_file);
+error_log(print_r($watson_return_array, TRUE), 3, $v_log_file);
 
 $answer = '';
 
@@ -56,7 +57,7 @@ if(isset($watson_return_array['result_texts']))
    }
 }
 
-//send message to Facebook bot
+//send Watson response message to Facebook bot
 $response = array();
 $response['recipient']['id'] = $senderId;
 $response['message']['text'] = substr($answer, 0, 1999);
@@ -77,7 +78,7 @@ $api_url = 'https://graph.facebook.com/v2.6/me/messages?access_token='.$accessTo
 $http_header = array();
 $http_header[] = 'Content-Type: application/json';
 $api_response = call_facebook_messenger_api($api_url, json_encode($response), $http_header);
-//error_log("After call of MS Bot SEND RESPONSE API: $api_url \n", 3, $v_log_file);
+//error_log("After call of Facebook Bot SEND RESPONSE API: $api_url \n", 3, $v_log_file);
 //error_log(print_r($api_response, TRUE), 3, $v_log_file);
 
 error_log("--------------------------------------------------------------------\n", 3, $v_log_file);

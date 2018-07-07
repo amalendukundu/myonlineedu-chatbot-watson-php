@@ -202,11 +202,11 @@
     /* 
       This function is called from FaceBook messenger webhook for Oracle eBS context. This function process the user input and act accordingly
     */
-    public function getMessengerGenericEBSReply($p_sender_id, $p_chat_text, $session_array, $p_session_expiary = null)
+    public function getWebHookReply($p_sender_id, $p_chat_text, $session_array, $p_session_expiary = null)
     {
       //Send the user input to watson for a response and save the response to DB
       (isset($session_array['watson_api_context'])) ? $watson_api_context = $session_array['watson_api_context'] : $watson_api_context = null;
-      $watson_return_array = $this->processOracleEBSChatInput($p_chat_text, $watson_api_context);
+      $watson_return_array = $this->processChatInput($p_chat_text, $watson_api_context);
       
       //$session_array->watson_api_context = $watson_return_array['watson_api_context'];
       $session_array['watson_api_context'] = $watson_return_array['watson_api_context'];
